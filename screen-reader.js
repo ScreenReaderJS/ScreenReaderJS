@@ -29,8 +29,7 @@ class ScreenReader {
             "readingEnabled": "Branje besedila je vključeno.",
             "readingDisabled": "Branje besedila je izključeno.",
             "readerStartFailed": "Branja ni mogoče začeti.",
-            "readerBtnTitle": "Branje besedila 
-Bljižnica: CTRL+B",
+            "readerBtnTitle": "Branje besedila\nBljižnica: CTRL+B",
             "readerDenied": "Branje besedila je samodejno onemogočeno.",
             "synthTitle": "Sinteza govora:",
             "interrupted": "branje predčasno prekinjeno",
