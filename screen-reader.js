@@ -41,7 +41,8 @@ class ScreenReader {
 
         this._lastElement = null;
         this._hoverTimeout = null;
-
+        this._enableMouse = true;
+        
         this.initialize();
     }
 
@@ -406,7 +407,7 @@ class ScreenReader {
                 if (event.ctrlKey && !ctrlPressed && keyboardEnable) {
                     ctrlPressed = true;
                     screenReader.speakMsg("");
-
+                    screenReader._enableMouse = true;
                     if (screenReader.status) {
                         screenReader._notyf.dismissAll();
                         screenReader._notyf.success(screenReader._appStrings["readingStopped"]);
@@ -416,7 +417,11 @@ class ScreenReader {
 
                 if (event.altKey && event.key.toLowerCase() === "v" && !altVPressed && keyboardEnable) {
                     altVPressed = true;
-                    alert("doREADALL");
+                    screenReader._enableMouse = false;
+                    let allTextArray = screenReader.getAllTextFromElement(document.querySelector('#page-content-wrapper'));
+                     alert("Do Start");
+                    screenReader.speakTexts(allTextArray);
+                   
                 }
 
                 if (event.altKey && event.key.toLowerCase() === "n" && !altNPressed && keyboardEnable) {
@@ -534,7 +539,7 @@ class ScreenReader {
     handleHoverOrTouch(event) {
         let clientX,
         clientY;
-
+        
         if (event.type === "mousemove") {
             clientX = event.clientX;
             clientY = event.clientY;
@@ -553,7 +558,7 @@ class ScreenReader {
 
             this._lastElement = element;
 
-            if (
+            if (this._enableMouse &&
                 element &&
                 element !== document.documentElement &&
                 element !== document.body) {
