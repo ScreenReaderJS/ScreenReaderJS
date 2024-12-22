@@ -136,6 +136,12 @@ speakTexts(texts) {
 
     function speakNext() {
         if (i < texts.length) {
+            
+            if(screenReader._enableMouse){
+                screenReader.speakMsg("");
+                break;
+            }
+            
             screenReader.speakMsg(texts[i][0], texts[i][1]);
             i++;
 
