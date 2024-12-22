@@ -128,7 +128,7 @@ class ScreenReader {
     }
 
 
-    function speakTexts(texts) {
+    speakTexts(texts) {
       let i = 0;
       
       function speakNext() {
