@@ -135,23 +135,21 @@ class ScreenReader {
         
       let i = 0;
       
-      function speakNext() {
+        function speakNext() {
         if (i < texts.length) {
-          screenReader.speakMsg(texts[i][0], texts[i][1]);
-          i++;
-  
-          const interval = setInterval(() => {
-            if (!screenReader._synth.speaking) {
-              clearInterval(interval);
-              speakNext();
-            }
-          }, 100);
-        }
-      }
-    
-      speakNext();
+            screenReader.speakMsg(texts[i][0], texts[i][1]);  // Speak the current text
+            i++;
 
-        screenReader._enableMouse = true;
+            const interval = setInterval(() => {
+                if (!screenReader._synth.speaking) {
+                    clearInterval(interval);  // Stop checking when speech is finished
+                    speakNext();  // Move to the next text
+                }
+            }, 100);
+        } else {
+            // Restore mouse interaction once all texts are spoken
+            screenReader._enableMouse = true; 
+        }
     }
     
     speakMsg(msg, element = null) {
