@@ -139,7 +139,7 @@ speakTexts(texts) {
             
             if(screenReader._enableMouse){
                 screenReader.speakMsg("");
-                break;
+                return;
             }
             
             screenReader.speakMsg(texts[i][0], texts[i][1]);
