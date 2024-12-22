@@ -25,7 +25,7 @@ class ScreenReader {
         this._appStrings = {
             "noSlovenianVoice": "Ni slovenskega glasu.",
             "readingStopped": "Branje besedila je prekinjeno.",
-            "readAll": "Prebrano bo celotno besedilo.",
+            "readAll": "Prebrano bo celotno besedilo.<br>CTRL - prekinitev branja",
             "readingEnabled": "Branje besedila je vključeno.",
             "readingDisabled": "Branje besedila je izključeno.",
             "readerStartFailed": "Branja ni mogoče začeti.",
