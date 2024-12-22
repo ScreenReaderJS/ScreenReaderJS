@@ -130,7 +130,7 @@ class ScreenReader {
     }
 
 
-function speakTexts(texts) {
+speakTexts(texts) {
     screenReader._enableMouse = false;
     let i = 0;
 
