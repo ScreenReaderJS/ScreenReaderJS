@@ -391,7 +391,7 @@ speakTexts(texts) {
 
         setTimeout(() => {
             this._notyf = new Notyf({
-                duration: 2500
+                duration: 3500
             });
             this.checkReader();
             this._localVoiceName = "";
