@@ -456,6 +456,7 @@ speakTexts(texts) {
                         localStorage.setItem("ScreenReaderToggleKeyboard", keyboardEnable);
                     console.log(keyboardEnable);
 
+                    screenReader._notyf.dismissAll();
                     if (keyboardEnable)
                         screenReader._notyf.success({ message: screenReader._appStrings["keysEnabled"],  duration: 20000,  dismissible: true});
                     else
