@@ -127,6 +127,27 @@ class ScreenReader {
         return result;
     }
 
+
+    function speakTexts(texts) {
+      let i = 0;
+      
+      function speakNext() {
+        if (i < texts.length) {
+          this.speakMsg(texts[i][0], texts[i][1]);
+          i++;
+  
+          const interval = setInterval(() => {
+            if (!screenReader._synth.speaking) {
+              clearInterval(interval);
+              speakNext();
+            }
+          }, 100);
+        }
+      }
+    
+      speakNext();
+    }
+    
     speakMsg(msg, element = null) {
         if (this._readerStatus) {
             this._synth.cancel();
