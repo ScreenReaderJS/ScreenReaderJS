@@ -457,7 +457,7 @@ speakTexts(texts) {
                     console.log(keyboardEnable);
 
                     if (keyboardEnable)
-                        screenReader._notyf.success({ message: screenReader._appStrings["keysEnabled"],  duration: 10000,  dismissible: true});
+                        screenReader._notyf.success({ message: screenReader._appStrings["keysEnabled"],  duration: 20000,  dismissible: true});
                     else
                         screenReader._notyf.success(screenReader._appStrings["keysDisabled"]);
 
