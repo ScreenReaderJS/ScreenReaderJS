@@ -394,6 +394,7 @@ class ScreenReader {
             let ctrlPressed = false;
             let ctrlNPressed = false;
             let altNPressed = false;
+            let altVPressed = false;
             let keyboardEnable = false;
             if (screenReader.isLocalStorageAvailable()) {
                 keyboardEnable = localStorage.getItem("ScreenReaderToggleKeyboard") || "false";
@@ -413,11 +414,16 @@ class ScreenReader {
 
                 }
 
+                if (event.altKey && event.key.toLowerCase() === "v" && !altVPressed && keyboardEnable) {
+                    altVPressed = true;
+                    alert("doREADALL");
+                }
+
                 if (event.altKey && event.key.toLowerCase() === "n" && !altNPressed && keyboardEnable) {
                     altNPressed = true;
                     document.getElementById("readerIcon").click();
                 }
-
+                
                 if (event.ctrlKey && event.key.toLowerCase() === "b" && !ctrlNPressed) {
                     ctrlNPressed = true;
                     keyboardEnable = !keyboardEnable;
@@ -439,6 +445,10 @@ class ScreenReader {
                     altNPressed = false;
                 }
 
+                if (event.altKey === false || event.key.toLowerCase() === "v") {
+                    altVPressed = false;
+                }
+                
                 if (event.ctrlKey === false || event.key.toLowerCase() === "b") {
                     ctrlNPressed = false;
                 }
