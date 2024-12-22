@@ -116,7 +116,7 @@ class ScreenReader {
                     result.push([currentText, element]);
                     currentText = "";
                 }
-                result.push(...getAllTextFromElement(node));
+                result.push(...this.getAllTextFromElement(node));
             }
         });
         
