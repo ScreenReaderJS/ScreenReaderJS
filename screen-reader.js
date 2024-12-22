@@ -435,8 +435,8 @@ speakTexts(texts) {
                         allTextArray.splice(i, allTextArray.length - i);
                     }
 
-                    if(screenReader._readerStatus){
-                         screenReader._notyf.error(screenReader._appStrings["readingDisabled"]);
+                    if(!screenReader._readerStatus){
+                        screenReader._notyf.error(screenReader._appStrings["readingDisabled"]);
                     }else{
                         screenReader._notyf.success(screenReader._appStrings["readAll"]);
                     }
