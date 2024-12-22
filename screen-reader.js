@@ -25,6 +25,7 @@ class ScreenReader {
         this._appStrings = {
             "noSlovenianVoice": "Ni slovenskega glasu.",
             "readingStopped": "Branje besedila je prekinjeno.",
+            "readAll": "Prebrano bo celotno besedilo.",
             "readingEnabled": "Branje besedila je vključeno.",
             "readingDisabled": "Branje besedila je izključeno.",
             "readerStartFailed": "Branja ni mogoče začeti.",
@@ -419,7 +420,7 @@ class ScreenReader {
                     altVPressed = true;
                     screenReader._enableMouse = false;
                     let allTextArray = screenReader.getAllTextFromElement(document.querySelector('#page-content-wrapper'));
-                     alert("Do Start");
+                    screenReader._notyf.success(screenReader._appStrings["readAll"]);
                     screenReader.speakTexts(allTextArray);
                    
                 }
