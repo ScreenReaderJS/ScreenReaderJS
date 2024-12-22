@@ -429,6 +429,12 @@ speakTexts(texts) {
                     altBPressed = true;
                     screenReader._enableMouse = false;
                     let allTextArray = screenReader.getAllTextFromElement(document.querySelector('#page-content-wrapper'));
+                    
+                    let i = allTextArray.findIndex(item => item[0].includes("«"));
+                    if (i !== -1) {
+                        allTextArray.splice(i, allTextArray.length - i);
+                    }
+                    
                     screenReader._notyf.success(screenReader._appStrings["readAll"]);
                     screenReader.speakTexts(allTextArray);
                    
