@@ -102,6 +102,31 @@ class ScreenReader {
         return this._appStrings[text] || text;
     }
 
+    getAllTextFromElement(element) {
+        if (!element) return [];
+        let result = [];
+        let currentText = "";
+        
+        element.childNodes.forEach(node => {
+            if (node.nodeType === Node.TEXT_NODE || 
+                (node.nodeType === Node.ELEMENT_NODE && ['SPAN', 'B', 'I', 'U'].includes(node.tagName))) {
+                currentText += node.textContent.trim();
+            } else if (node.nodeType === Node.ELEMENT_NODE) {
+                if (currentText) {
+                    result.push([currentText, element]);
+                    currentText = "";
+                }
+                result.push(...getAllTextFromElement(node));
+            }
+        });
+        
+        if (currentText) {
+            result.push([currentText, element]);
+        }
+        
+        return result;
+    }
+
     speakMsg(msg, element = null) {
         if (this._readerStatus) {
             this._synth.cancel();
