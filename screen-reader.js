@@ -36,7 +36,7 @@ class ScreenReader {
             "not-allowed": "branje ni dovoljeno",
             "voice": "Glas: ",
             "readerName": "Govornik TTS",
-            "keysEnabled": "Bljižnice so vklopljene<br><br>ALT+N - vklop/izklop bralca<br>CTRL - prekinitev branja",
+            "keysEnabled": "Bljižnice so vklopljene<br><br>ALT+N - vklop/izklop bralca<br>ALT+B - preberi vse<br>CTRL - prekinitev branja",
             "keysDisabled": "Bljižnice so izklopljene",
         };
 
@@ -131,6 +131,8 @@ class ScreenReader {
 
 
     speakTexts(texts) {
+        screenReader._enableMouse = false;
+        
       let i = 0;
       
       function speakNext() {
@@ -148,6 +150,8 @@ class ScreenReader {
       }
     
       speakNext();
+
+        screenReader._enableMouse = true;
     }
     
     speakMsg(msg, element = null) {
@@ -396,7 +400,7 @@ class ScreenReader {
             let ctrlPressed = false;
             let ctrlNPressed = false;
             let altNPressed = false;
-            let altVPressed = false;
+            let altBPressed = false;
             let keyboardEnable = false;
             if (screenReader.isLocalStorageAvailable()) {
                 keyboardEnable = localStorage.getItem("ScreenReaderToggleKeyboard") || "false";
@@ -416,8 +420,8 @@ class ScreenReader {
 
                 }
 
-                if (event.altKey && event.key.toLowerCase() === "v" && !altVPressed && keyboardEnable) {
-                    altVPressed = true;
+                if (event.altKey && event.key.toLowerCase() === "b" && !altBPressed && keyboardEnable) {
+                    altBPressed = true;
                     screenReader._enableMouse = false;
                     let allTextArray = screenReader.getAllTextFromElement(document.querySelector('#page-content-wrapper'));
                     screenReader._notyf.success(screenReader._appStrings["readAll"]);
@@ -451,8 +455,8 @@ class ScreenReader {
                     altNPressed = false;
                 }
 
-                if (event.altKey === false || event.key.toLowerCase() === "v") {
-                    altVPressed = false;
+                if (event.altKey === false || event.key.toLowerCase() === "b") {
+                    altBPressed = false;
                 }
                 
                 if (event.ctrlKey === false || event.key.toLowerCase() === "b") {
