@@ -134,7 +134,7 @@ class ScreenReader {
       
       function speakNext() {
         if (i < texts.length) {
-          this.speakMsg(texts[i][0], texts[i][1]);
+          screenReader.speakMsg(texts[i][0], texts[i][1]);
           i++;
   
           const interval = setInterval(() => {
