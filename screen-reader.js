@@ -244,28 +244,6 @@ speakTexts(texts) {
         this._voices = this._synth.getVoices();
     }
 
-
-    findNavbar() {
-        const selectors = [
-            "nav",                 
-            "#navbar",             
-            ".navbar",           
-            "#navbar .navbar-nav",
-            "[role='navigation']",
-            "[class*='menu']",   
-            "[id*='menu']"    
-        ];
-    
-        for (let selector of selectors) {
-            const navbar = document.querySelector(selector);
-            if (navbar) {
-                return navbar;
-            }
-        }
-
-        return null;
-    }
-
     
     injectButton() {
         var newItem = document.createElement("li");
@@ -285,48 +263,65 @@ speakTexts(texts) {
 
         newItem.appendChild(newLink);
 
-        var navbar = findNavbar();
+        var navbar = null;
 
-        if(!navbar){
-            return;
+         const selectors = [
+            "nav",                 
+            "#navbar",             
+            ".navbar",           
+            "#navbar .navbar-nav",
+            "[role='navigation']",
+            "[class*='menu']",   
+            "[id*='menu']"    
+        ];
+    
+        for (let selector of selectors) {
+            const testNavbar = document.querySelector(selector);
+            if (testNavbar) {
+                navbar = testNavbar;
+                break;
+            }
         }
-            
-        navbar.appendChild(newItem);
-
-        newLink.onclick = () => {
-            this._synth.speak(new SpeechSynthesisUtterance(""));
-            const worked = this._synth.speaking || this._synth.pending;
-            if (this._debug)
-                console.log("Available:" + worked);
-
-            this._notyf.dismissAll();
-            this.speakMsg("");
-
-            var toggleValue = "false";
-            if (this.isLocalStorageAvailable())
-                toggleValue = localStorage.getItem("toggleScreenReader");
-
-            var currentValue = toggleValue === "true";
-            var newValue = !currentValue;
-
-            if (this.isLocalStorageAvailable())
-                localStorage.setItem("toggleScreenReader", newValue.toString());
-
-            if (this._debug)
-                console.log("Reader:", newValue);
-            this._readerStatus = newValue;
-            this._readerStatus = /^true$/i.test(this._readerStatus);
-
-            if (this._readerStatus)
-                this._notyf.success(this._appStrings["readingEnabled"] + "<br><br>" + this._appStrings["voice"] + "<br>" + this._localVoiceName);
-            else
-                this._notyf.success(this._appStrings["readingDisabled"]);
-
-            if (this._readerStatus)
-                newIcon.className = "fa fa-volume-up";
-            else
-                newIcon.className = "fa fa-volume-off";
-        };
+        
+        if(navbar){
+                 
+            navbar.appendChild(newItem);
+    
+            newLink.onclick = () => {
+                this._synth.speak(new SpeechSynthesisUtterance(""));
+                const worked = this._synth.speaking || this._synth.pending;
+                if (this._debug)
+                    console.log("Available:" + worked);
+    
+                this._notyf.dismissAll();
+                this.speakMsg("");
+    
+                var toggleValue = "false";
+                if (this.isLocalStorageAvailable())
+                    toggleValue = localStorage.getItem("toggleScreenReader");
+    
+                var currentValue = toggleValue === "true";
+                var newValue = !currentValue;
+    
+                if (this.isLocalStorageAvailable())
+                    localStorage.setItem("toggleScreenReader", newValue.toString());
+    
+                if (this._debug)
+                    console.log("Reader:", newValue);
+                this._readerStatus = newValue;
+                this._readerStatus = /^true$/i.test(this._readerStatus);
+    
+                if (this._readerStatus)
+                    this._notyf.success(this._appStrings["readingEnabled"] + "<br><br>" + this._appStrings["voice"] + "<br>" + this._localVoiceName);
+                else
+                    this._notyf.success(this._appStrings["readingDisabled"]);
+    
+                if (this._readerStatus)
+                    newIcon.className = "fa fa-volume-up";
+                else
+                    newIcon.className = "fa fa-volume-off";
+            };
+         }
     }
 
     playTTSExternal(text, element) {
