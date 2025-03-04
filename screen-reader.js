@@ -255,7 +255,7 @@ speakTexts(texts) {
         newItem.style.left = "15px";
         newItem.style.bottom = "15px";
         newItem.padding = "11px";
-        newItem.text-align = "center";
+        newItem.textAlign = "center";
         
         var newLink = document.createElement("a");
         newLink.href = "#";
