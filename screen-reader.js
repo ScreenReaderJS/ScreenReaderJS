@@ -246,7 +246,6 @@ speakTexts(texts) {
 
 
     function findNavbar() {
-        // Common navbar selectors
         const selectors = [
             "nav",                 
             "#navbar",             
