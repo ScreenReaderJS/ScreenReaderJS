@@ -266,10 +266,10 @@ speakTexts(texts) {
         var navbar = null;
 
          const selectors = [
-            "nav",                 
+            "#navbar .navbar-nav",           
             "#navbar",             
             ".navbar",           
-            "#navbar .navbar-nav",
+            "nav",  
             "[role='navigation']",
             "[class*='menu']",   
             "[id*='menu']"    
