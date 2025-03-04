@@ -727,7 +727,7 @@ let localVoiceAvailable = screenReader.selectSlovenianVoice(screenReader._voices
 if (localVoiceAvailable)
     screenReader.hoverDelay = 500;
 else
-    screenReader.hoverDelay = 500;
+    screenReader.hoverDelay = 400;
 
 screenReader.textReplacements = textReplacements;
 screenReader.debug = false;
