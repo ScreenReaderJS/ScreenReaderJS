@@ -244,6 +244,30 @@ speakTexts(texts) {
         this._voices = this._synth.getVoices();
     }
 
+
+    function findNavbar() {
+        // Common navbar selectors
+        const selectors = [
+            "nav",                 
+            "#navbar",             
+            ".navbar",           
+            "#navbar .navbar-nav",
+            "[role='navigation']",
+            "[class*='menu']",   
+            "[id*='menu']"    
+        ];
+    
+        for (let selector of selectors) {
+            const navbar = document.querySelector(selector);
+            if (navbar) {
+                return navbar;
+            }
+        }
+
+        return null;
+    }
+
+    
     injectButton() {
         var newItem = document.createElement("li");
         var newLink = document.createElement("a");
@@ -262,7 +286,12 @@ speakTexts(texts) {
 
         newItem.appendChild(newLink);
 
-        var navbar = document.querySelector("#navbar .navbar-nav");
+        var navbar = findNavbar();
+
+        if(!navbar){
+            return;
+        }
+            
         navbar.appendChild(newItem);
 
         newLink.onclick = () => {
