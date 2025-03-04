@@ -246,12 +246,22 @@ speakTexts(texts) {
 
     
     injectButton() {
-        var newItem = document.createElement("li");
+        var newItem = document.createElement("div");
+
+        newItem.style.border = "2px solid black";
+        newItem.style.background = "white";
+        newItem.style.position = "fixed";
+        newItem.style.borderRadius = "100px";
+        newItem.style.left = "15px";
+        newItem.style.bottom = "15px";
+        newItem.padding = "11px";
+        newItem.text-align = "center";
+        
         var newLink = document.createElement("a");
         newLink.href = "#";
         newLink.title = this._appStrings["readerBtnTitle"];
         newLink.id = "readerBtn";
-
+    
         var newIcon = document.createElement("span");
         newIcon.id = "readerIcon";
         if (this._readerStatus)
@@ -265,23 +275,7 @@ speakTexts(texts) {
 
         var navbar = null;
 
-         const selectors = [
-            "#navbar .navbar-nav",           
-            "#navbar",             
-            ".navbar",           
-            "nav",  
-            "[role='navigation']",
-            "[class*='menu']",   
-            "[id*='menu']"    
-        ];
-    
-        for (let selector of selectors) {
-            const testNavbar = document.querySelector(selector);
-            if (testNavbar) {
-                navbar = testNavbar;
-                break;
-            }
-        }
+        var navbar = document.querySelector("body");
         
         if(navbar){
                  
