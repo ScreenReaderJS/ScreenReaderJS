@@ -622,6 +622,14 @@ speakTexts(texts) {
 
                 text = this.replaceText(text);
 
+               if (element && element.tagName === "DIV" && !element.querySelector("p, h1, h2, h3")) {
+                     this._hoverTimeout = setTimeout(() => {
+                        if (text)
+                            this.speakMsg(text, element);
+                    }, this._hoverDelayReading*3);
+                }
+
+                
                 if (
                     element.tagName !== "DIV" &&
                     element.tagName !== "UL" &&
